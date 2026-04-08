@@ -13,7 +13,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 코드를 작성하기 전에, 관련된 프로젝트 문서를 먼저 확인하세요.
 
 - 코드 컨벤션, 커밋 컨벤션, 브랜치 전략: `docs/conventions.md`
-- 디자인 토큰, 반응형 규칙, 타이포그래피: `docs/design-guide.md`
+- 디자인 가이드 (사람용 요약): `docs/design-guide.md`
+- 디자인 시스템 (AI용 상세 스펙): `DESIGN.md`
 - API 엔드포인트 명세: `docs/api-specification.md`
 
 ## TypeScript 타입 체크

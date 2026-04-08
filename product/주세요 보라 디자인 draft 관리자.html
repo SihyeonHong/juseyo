@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>주세요 — 관리자</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #F7F5FB;
+      --surface:      #FFFFFF;
+      --surface-alt:  #F0EBF8;
+      --border:       #E2DAF5;
+      --primary:      #4A3F6B;
+      --primary-light:#6D5FA0;
+      --accent:       #D4708A;
+      --accent-light: #F5C6D3;
+      --green:        #3DAA6A;
+      --green-bg:     #E8F7EF;
+      --text-main:    #1E1827;
+      --text-sub:     #6B6078;
+      --text-muted:   #9E93AB;
+      --radius-sm:    8px;
+      --radius-md:    14px;
+      --radius-lg:    20px;
+      --shadow-card:  0 2px 12px rgba(74,63,107,0.10);
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      max-width: 430px;
+      margin: 0 auto;
+      padding-bottom: 48px;
+    }
+
+    /* ── Top Nav ── */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247,245,251,0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-left { display: flex; align-items: center; gap: 10px; }
+
+    .logo-mark {
+      width: 28px; height: 28px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .logo-text {
+      font-size: 17px; font-weight: 700;
+      color: var(--primary); letter-spacing: -0.5px;
+    }
+
+    .admin-badge {
+      background: var(--surface-alt);
+      color: var(--primary-light);
+      font-size: 10px; font-weight: 700;
+      padding: 3px 8px; border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 6px; }
+
+    .nav-user {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 13px; color: var(--text-sub); font-weight: 500;
+    }
+
+    .nav-avatar {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-light), var(--accent));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+    }
+
+    .nav-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--text-sub); padding: 4px;
+    }
+
+    /* ── Section Divider ── */
+    .section-block {
+      margin-top: 20px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 18px 0;
+    }
+
+    .section-heading-icon {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .section-heading-icon svg { width: 16px; height: 16px; }
+
+    .section-heading-title {
+      font-size: 16px; font-weight: 700;
+      color: var(--text-main); letter-spacing: -0.4px;
+    }
+
+    .section-heading-sub {
+      font-size: 12px; color: var(--text-muted);
+      margin-top: 1px; font-weight: 400;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(to right, var(--primary-light), transparent);
+      margin: 12px 18px 0;
+      opacity: 0.3;
+    }
+
+    /* ── Card wrapper ── */
+    .section-card {
+      background: var(--surface);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+      margin: 12px 18px 0;
+      padding: 18px;
+    }
+
+    /* ── Form Elements ── */
+    .form-group { margin-bottom: 16px; }
+    .form-group:last-child { margin-bottom: 0; }
+
+    .form-label {
+      display: block;
+      font-size: 12px; font-weight: 700;
+      color: var(--text-sub);
+      margin-bottom: 6px;
+      letter-spacing: 0.2px;
+    }
+
+    .form-label .required {
+      color: var(--accent); margin-left: 2px;
+    }
+
+    .form-input {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 14px; font-weight: 400;
+      font-family: 'Noto Sans KR', sans-serif;
+      color: var(--text-main);
+      background: var(--bg);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .form-input:focus { border-color: var(--primary-light); }
+
+    .form-input::placeholder { color: var(--text-muted); }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 80px;
+      line-height: 1.6;
+    }
+
+    /* ── Profile Photo ── */
+    .avatar-edit-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .avatar-preview {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      border: 3px solid var(--surface);
+      box-shadow: 0 0 0 2px var(--border);
+      flex-shrink: 0;
+    }
+
+    .avatar-actions { display: flex; flex-direction: column; gap: 6px; }
+
+    .btn-outline-sm {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 6px 12px;
+      font-size: 12px; font-weight: 600;
+      color: var(--text-sub); cursor: pointer;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .btn-outline-sm.danger {
+      border-color: var(--accent-light);
+      color: var(--accent);
+    }
+
+    /* ── Save Button ── */
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #fff; border: none;
+      border-radius: var(--radius-sm);
+      padding: 13px;
+      font-size: 14px; font-weight: 700;
+      font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer; letter-spacing: -0.2px;
+      margin-top: 18px;
+    }
+
+    .btn-secondary {
+      width: 100%;
+      background: var(--surface-alt); color: var(--primary);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      font-size: 14px; font-weight: 700;
+      font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer; letter-spacing: -0.2px;
+      margin-top: 8px;
+    }
+
+    /* ── Image Upload Area ── */
+    .image-upload-area {
+      border: 2px dashed var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg);
+      cursor: pointer;
+    }
+
+    .upload-icon-wrap {
+      width: 44px; height: 44px;
+      background: var(--surface-alt);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .upload-main-text {
+      font-size: 13px; font-weight: 700;
+      color: var(--primary-light);
+    }
+
+    .upload-sub-text {
+      font-size: 11px; color: var(--text-muted); text-align: center;
+      line-height: 1.5;
+    }
+
+    /* Image thumbnails row */
+    .image-thumb-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+
+    .image-thumb-row::-webkit-scrollbar { display: none; }
+
+    .thumb-item {
+      flex-shrink: 0;
+      width: 68px; height: 68px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-alt);
+      border: 1.5px solid var(--border);
+      overflow: hidden;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .thumb-item .thumb-emoji { font-size: 24px; }
+
+    .thumb-remove {
+      position: absolute;
+      top: 3px; right: 3px;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: rgba(30,24,39,0.6);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+
+    .thumb-remove::before, .thumb-remove::after {
+      content: '';
+      position: absolute;
+      width: 8px; height: 1.5px;
+      background: #fff;
+      border-radius: 1px;
+    }
+
+    .thumb-remove::before { transform: rotate(45deg); }
+    .thumb-remove::after { transform: rotate(-45deg); }
+
+    .thumb-main-badge {
+      position: absolute; bottom: 3px; left: 3px;
+      background: var(--primary);
+      color: #fff; font-size: 9px; font-weight: 700;
+      padding: 1px 5px; border-radius: 4px;
+    }
+
+    .thumb-add {
+      flex-shrink: 0;
+      width: 68px; height: 68px;
+      border-radius: var(--radius-sm);
+      border: 2px dashed var(--border);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      background: var(--bg);
+      color: var(--text-muted);
+      font-size: 22px;
+    }
+
+    /* ── Status Select ── */
+    .status-group {
+      display: flex; gap: 8px;
+    }
+
+    .status-btn {
+      flex: 1;
+      padding: 9px 0;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      font-size: 13px; font-weight: 600;
+      font-family: 'Noto Sans KR', sans-serif;
+      color: var(--text-muted); cursor: pointer;
+      text-align: center;
+    }
+
+    .status-btn.active-sale {
+      background: var(--green-bg);
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    .status-btn.active-hold {
+      background: #FFF8E8;
+      border-color: #E0A030;
+      color: #C07A10;
+    }
+
+    .status-btn.active-sold {
+      background: var(--surface-alt);
+      border-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    /* ── Price Input ── */
+    .price-input-wrap {
+      position: relative;
+    }
+
+    .price-input-wrap .form-input {
+      padding-right: 30px;
+    }
+
+    .price-unit {
+      position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+      font-size: 13px; color: var(--text-muted); font-weight: 500;
+      pointer-events: none;
+    }
+
+    /* ── Image Edit Section ── */
+    .img-edit-mock {
+      background: #1A1A2E;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid #2D2D50;
+    }
+
+    .img-edit-toolbar {
+      display: flex;
+      gap: 8px;
+      padding: 12px 14px;
+      background: #12121F;
+      border-bottom: 1px solid #2D2D50;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .img-edit-toolbar::-webkit-scrollbar { display: none; }
+
+    .tool-btn {
+      flex-shrink: 0;
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: none;
+      font-size: 12px; font-weight: 700;
+      font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer;
+    }
+
+    .tool-btn.blue  { background: #3B82F6; color: #fff; }
+    .tool-btn.green { background: #22C55E; color: #fff; }
+    .tool-btn.red   { background: #EF4444; color: #fff; }
+
+    .img-edit-canvas-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .img-edit-canvas-wrap img {
+      width: 100%;
+      display: block;
+    }
+
+    /* 수직선 오버레이 */
+    .cut-line-v {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: red;
+    }
+
+    .cut-line-h {
+      position: absolute;
+      left: 0; right: 0;
+      height: 2px;
+      background: #22C55E;
+    }
+
+    .cut-label {
+      position: absolute;
+      background: var(--primary);
+      color: #fff;
+      font-size: 10px; font-weight: 700;
+      padding: 2px 6px; border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .cut-label.top { top: -1px; transform: translateX(-50%); }
+    .cut-label.side { left: 6px; transform: translateY(-50%); }
+
+    .cut-remove-btn {
+      position: absolute;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: #EF4444;
+      border: 2px solid #fff;
+      bottom: -9px; left: 50%; transform: translateX(-50%);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .cut-remove-btn::before, .cut-remove-btn::after {
+      content: '';
+      position: absolute;
+      width: 8px; height: 1.5px;
+      background: #fff; border-radius: 1px;
+    }
+
+    .cut-remove-btn::before { transform: rotate(45deg); }
+    .cut-remove-btn::after  { transform: rotate(-45deg); }
+
+    /* 수평선 x 버튼 */
+    .cut-remove-btn-h {
+      position: absolute;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: #22C55E;
+      border: 2px solid #fff;
+      right: -9px; top: 50%; transform: translateY(-50%);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .cut-remove-btn-h::before, .cut-remove-btn-h::after {
+      content: '';
+      position: absolute;
+      width: 8px; height: 1.5px;
+      background: #fff; border-radius: 1px;
+    }
+
+    .cut-remove-btn-h::before { transform: rotate(45deg); }
+    .cut-remove-btn-h::after  { transform: rotate(-45deg); }
+
+    .img-edit-info {
+      padding: 14px;
+      background: #12121F;
+      border-top: 1px solid #2D2D50;
+    }
+
+    .info-title {
+      font-size: 12px; font-weight: 700;
+      color: #A78BFA; margin-bottom: 8px;
+    }
+
+    .info-row {
+      font-size: 11px; color: #C4B5D8;
+      line-height: 1.7;
+    }
+
+    .info-row strong { color: #E2D9F3; font-weight: 600; }
+
+    .img-edit-actions {
+      display: flex; gap: 8px;
+      padding: 12px 14px;
+      background: #12121F;
+      border-top: 1px solid #2D2D50;
+    }
+
+    .action-btn {
+      flex: 1;
+      padding: 10px 0;
+      border-radius: var(--radius-sm);
+      border: none;
+      font-size: 12px; font-weight: 700;
+      font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .action-btn.primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #fff;
+    }
+
+    .action-btn.outline {
+      background: transparent;
+      border: 1.5px solid #4A3F6B;
+      color: #A78BFA;
+    }
+
+    .action-btn.accent {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* ── Info Row with hint ── */
+    .form-hint {
+      font-size: 11px; color: var(--text-muted);
+      margin-top: 4px; line-height: 1.5;
+    }
+
+    /* ── Separator ── */
+    .big-separator {
+      height: 8px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-top: 28px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ── Top Nav ── -->
+  <nav class="top-nav">
+    <div class="nav-left">
+      <div class="logo-mark">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 01-8 0"/>
+        </svg>
+      </div>
+      <span class="logo-text">주세요</span>
+      <span class="admin-badge">관리자</span>
+    </div>
+    <div class="nav-right">
+      <div class="nav-user">
+        <div class="nav-avatar">🌸</div>
+        <span>naeun</span>
+      </div>
+      <button class="nav-btn" aria-label="로그아웃">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+
+  <!-- ════════════════════════════════
+       1. 마켓 정보 변경
+  ════════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-heading">
+      <div class="section-heading-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-heading-title">마켓 정보 변경</div>
+        <div class="section-heading-sub">프로필과 마켓 소개를 수정합니다</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="section-card">
+
+      <!-- 프사 변경 -->
+      <div class="form-group">
+        <label class="form-label">프로필 사진</label>
+        <div class="avatar-edit-row">
+          <div class="avatar-preview">🌸</div>
+          <div class="avatar-actions">
+            <button class="btn-outline-sm">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              사진 업로드
+            </button>
+            <button class="btn-outline-sm danger">삭제</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 마켓 이름 -->
+      <div class="form-group">
+        <label class="form-label">마켓 이름 <span class="required">*</span></label>
+        <input class="form-input" type="text" value="내은이네 포카마켓" placeholder="마켓 이름을 입력하세요" />
+      </div>
+
+      <!-- 마켓 설명 -->
+      <div class="form-group">
+        <label class="form-label">마켓 설명</label>
+        <textarea class="form-input" placeholder="마켓 소개를 입력하세요">포카는 카드번호로 문의해 주세요. 합배 가능, 직거래 불가. 입금 확인 후 1~2일 내 발송합니다 🌸</textarea>
+        <div class="form-hint">구매자에게 공개됩니다. 거래 조건, 배송 안내 등을 적어두세요.</div>
+      </div>
+
+      <button class="btn-primary">변경 사항 저장</button>
+    </div>
+  </div>
+
+
+  <div class="big-separator"></div>
+
+
+  <!-- ════════════════════════════════
+       2. 내 상품 관리 — 상품 추가
+  ════════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-heading">
+      <div class="section-heading-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+          <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-heading-title">내 상품 관리</div>
+        <div class="section-heading-sub">새 상품을 등록합니다</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="section-card">
+
+      <!-- 이미지 첨부 -->
+      <div class="form-group">
+        <label class="form-label">상품 이미지 <span class="required">*</span></label>
+
+        <!-- 썸네일 행 -->
+        <div class="image-thumb-row">
+          <div class="thumb-item">
+            <span class="thumb-emoji">🪐</span>
+            <div class="thumb-remove"></div>
+            <span class="thumb-main-badge">대표</span>
+          </div>
+          <div class="thumb-item">
+            <span class="thumb-emoji">🌙</span>
+            <div class="thumb-remove"></div>
+          </div>
+          <div class="thumb-add">+</div>
+        </div>
+        <div class="form-hint">첫 번째 이미지가 대표 이미지로 사용됩니다. 여러 장 추가 가능합니다.</div>
+      </div>
+
+      <!-- 상품명 -->
+      <div class="form-group">
+        <label class="form-label">상품명 <span class="required">*</span></label>
+        <input class="form-input" type="text" placeholder="예) An Ode 앨범 포토카드 리즈 A버전" />
+      </div>
+
+      <!-- 가격 -->
+      <div class="form-group">
+        <label class="form-label">가격 <span class="required">*</span></label>
+        <div class="price-input-wrap">
+          <input class="form-input" type="number" inputmode="numeric" placeholder="0" />
+          <span class="price-unit">원</span>
+        </div>
+      </div>
+
+      <!-- 판매 상태 -->
+      <div class="form-group">
+        <label class="form-label">판매 상태</label>
+        <div class="status-group">
+          <button class="status-btn active-sale">판매 중</button>
+          <button class="status-btn">예약 중</button>
+          <button class="status-btn">판매 완료</button>
+        </div>
+      </div>
+
+      <!-- 상품 설명 -->
+      <div class="form-group">
+        <label class="form-label">상품 설명</label>
+        <textarea class="form-input" style="min-height:100px" placeholder="상태, 굿즈 종류, 획득 경로, 합배 조건 등 추가 정보를 입력하세요"></textarea>
+      </div>
+
+      <button class="btn-primary">상품 등록하기</button>
+      <button class="btn-secondary">임시 저장</button>
+    </div>
+  </div>
+
+
+  <div class="big-separator"></div>
+
+
+  <!-- ════════════════════════════════
+       3. 이미지 편집
+  ════════════════════════════════ -->
+  <div class="section-block">
+    <div class="section-heading">
+      <div class="section-heading-icon" style="background: linear-gradient(135deg, var(--accent) 0%, #B04A6A 100%);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <path d="M3 9h18M9 21V9"/>
+        </svg>
+      </div>
+      <div>
+        <div class="section-heading-title">이미지 편집</div>
+        <div class="section-heading-sub">이미지를 분할하거나 여러 상품에 한번에 등록</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+
+    <!-- 사용 안내 -->
+    <div style="margin: 12px 18px 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px;">
+      <div style="font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 6px;">이런 용도로 쓸 수 있어요</div>
+      <div style="font-size: 12px; color: var(--text-sub); line-height: 1.8;">
+        ① 수직·수평선으로 이미지를 분할 → 여러 상품을 한꺼번에 등록<br>
+        ② 한 상품에 들어갈 여러 이미지를 한 번에 업로드<br>
+        ③ 편집 결과를 그대로 다운로드
+      </div>
+    </div>
+
+    <!-- 편집기 목업 -->
+    <div style="margin: 12px 18px 0;">
+      <div class="img-edit-mock">
+
+        <!-- 툴바 -->
+        <div class="img-edit-toolbar">
+          <button class="tool-btn blue">수직선 추가</button>
+          <button class="tool-btn green">수평선 추가</button>
+          <button class="tool-btn red">모든 선 제거</button>
+        </div>
+
+        <!-- 캔버스 -->
+        <div class="img-edit-canvas-wrap">
+          <!-- 실제 첨부 이미지 사용 -->
+          <img src="/mnt/user-data/uploads/셀박_사진편집화면.png" alt="이미지 편집 미리보기" style="width:100%;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+          <!-- fallback: 이미지 로드 실패 시 -->
+          <div style="display:none; width:100%; padding-top:65%; background:#1A1A2E; position:relative; align-items:center; justify-content:center;">
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
+              <div style="font-size:36px">🖼️</div>
+              <div style="font-size:12px;color:#A78BFA;">이미지를 업로드해 주세요</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 이미지 정보 -->
+        <div class="img-edit-info">
+          <div class="info-title">이미지 정보</div>
+          <div class="info-row">
+            <strong>파일명:</strong> concert_photo.jpg<br>
+            <strong>크기:</strong> 2048 × 1365px<br>
+            <strong>수직선:</strong> 2개, <strong>수평선:</strong> 1개<br><br>
+            <strong>수직 절취선 위치 (왼쪽부터):</strong><br>
+            수직선 1: 986px (48%)<br>
+            수직선 2: 1565px (76%)<br><br>
+            <strong>수평 절취선 위치 (위쪽부터):</strong><br>
+            수평선 1: 682px (50%)<br><br>
+            → 총 6개 조각으로 분할됩니다
+          </div>
+        </div>
+
+        <!-- 액션 버튼 -->
+        <div class="img-edit-actions">
+          <button class="action-btn primary">상품으로 등록</button>
+          <button class="action-btn accent">이미지 다운로드</button>
+          <button class="action-btn outline">초기화</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 업로드 버튼 -->
+    <div style="margin: 12px 18px 0;">
+      <div class="image-upload-area">
+        <div class="upload-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary-light)" stroke-width="2.2" stroke-linecap="round">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+        </div>
+        <div class="upload-main-text">편집할 이미지 업로드</div>
+        <div class="upload-sub-text">JPG, PNG, WEBP 지원<br>최대 20MB</div>
+      </div>
+    </div>
+
+  </div>
+  <!-- // 이미지 편집 -->
+
+</body>
+</html>
