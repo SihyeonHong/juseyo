@@ -5,6 +5,7 @@ import { getMessages } from "next-intl/server";
 
 import { pretendard } from "@/app/fonts";
 import { routing } from "@/i18n/routing";
+import ThemeProvider from "@/components/theme-provider";
 
 import "@/app/globals.css";
 
@@ -31,10 +32,12 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={pretendard.variable}>
+    <html lang={locale} className={pretendard.variable} suppressHydrationWarning>
       <body className="antialiased">
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -5,5 +5,11 @@
   },
   "ClientTest": {
     "clientMessage": "This translation is rendered in a Client Component."
+  },
+  "displayMode": {
+    "label": "Display Mode Settings",
+    "dark": "Dark Mode",
+    "light": "Light Mode",
+    "system": "System Setting"
   }
 }

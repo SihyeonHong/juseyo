@@ -5,5 +5,11 @@
   },
   "ClientTest": {
     "clientMessage": "이것은 클라이언트 컴포넌트에서 렌더링된 번역입니다."
+  },
+  "displayMode": {
+    "label": "화면 모드 설정",
+    "dark": "다크 모드",
+    "light": "라이트 모드",
+    "system": "시스템 설정"
   }
 }
