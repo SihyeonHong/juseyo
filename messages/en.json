@@ -1,0 +1,9 @@
+{
+  "HomePage": {
+    "title": "Home",
+    "serverMessage": "This translation is rendered in a Server Component."
+  },
+  "ClientTest": {
+    "clientMessage": "This translation is rendered in a Client Component."
+  }
+}

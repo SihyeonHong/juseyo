@@ -1,0 +1,9 @@
+{
+  "HomePage": {
+    "title": "시작페이지",
+    "serverMessage": "이것은 서버 컴포넌트에서 렌더링된 번역입니다."
+  },
+  "ClientTest": {
+    "clientMessage": "이것은 클라이언트 컴포넌트에서 렌더링된 번역입니다."
+  }
+}

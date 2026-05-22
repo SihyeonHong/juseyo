@@ -17,6 +17,12 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - 디자인 시스템 (AI용 상세 스펙): `DESIGN.md`
 - API 엔드포인트 명세: `docs/api-specification.md`
 
+## 주석 작성 규칙
+
+1. 주석은 한글로 작성합니다.
+2. 기술적인 외래어(예: locale, wrapper 등)는 한국어 발음으로 표기하지 말고 영어 원단어 그대로 표기합니다.
+3. 완전한 문장(예: '~합니다.')으로 작성할 필요 없이, 핵심만 간결하게 작성합니다. 불필요하거나 자명한 설명은 생략합니다.
+
 ## TypeScript 타입 체크
 
 코드를 수정하거나 추가한 후 타입 체크가 필요한 경우, 다음 규칙을 따르세요.
