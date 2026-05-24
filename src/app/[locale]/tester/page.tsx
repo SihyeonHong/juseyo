@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 
+import DesignSystemTester from "@/components/design-system-tester";
 import ThemeToggle from "@/components/theme-toggle";
-import { Link } from "@/i18n/routing";
 
 export default async function Home() {
   const t = await getTranslations("HomePage");
@@ -12,12 +12,9 @@ export default async function Home() {
         <h1 className="text-2xl font-bold">{t("title")}</h1>
         <ThemeToggle />
       </div>
-      
-      <Link href="/tester">
-        Go to Tester Page
-      </Link>
       <p className="mt-2 text-muted-foreground">{t("serverMessage")}</p>
       
+      <DesignSystemTester />
     </main>
   );
 }

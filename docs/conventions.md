@@ -48,6 +48,39 @@
 #### 컴포넌트 작성 형식
 
 - `export default function ComponentName() {}`
+- Props가 2개 이상일 경우 컴포넌트 바로 위에 `interface [컴포넌트명]Props` 형태로 타입 선언
+
+##### 예시
+
+```tsx
+interface LocaleLayoutProps {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}
+
+export default async function LocaleLayout({
+  children,
+  params,
+}: LocaleLayoutProps) {
+  // ...
+}
+```
+
+#### 내부 링크 및 내비게이션 규칙
+
+애플리케이션 내부의 모든 페이지 이동(내부 링크 및 내비게이션) 시, Next.js의 기본 라우팅 모듈(`next/link`, `next/navigation`)은 다국어(i18n) 프리픽스를 자동으로 처리하지 못하므로 사용을 금지합니다.
+현재 설정된 locale 상태를 안전하게 유지하고 불필요한 미들웨어 리다이렉션으로 인한 성능 오버헤드를 막기 위해, 내부의 모든 경로 이동에는 반드시 `@/i18n/routing`에서 제공하는 `Link`, `redirect`, `usePathname`, `useRouter`를 사용합니다.
+
+##### 예시
+
+```tsx
+// 올바른 예시: @/i18n/routing 모듈 사용
+import { Link, useRouter } from "@/i18n/routing";
+
+// 잘못된 예시: next/link 및 next/navigation 사용 금지
+// import Link from "next/link";
+// import { useRouter } from "next/navigation";
+```
 
 ### 파일 구조
 

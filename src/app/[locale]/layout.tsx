@@ -4,8 +4,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
 import { pretendard } from "@/app/fonts";
-import { routing } from "@/i18n/routing";
 import ThemeProvider from "@/components/theme-provider";
+import { routing } from "@/i18n/routing";
 
 import "@/app/globals.css";
 
@@ -14,13 +14,15 @@ export const metadata: Metadata = {
   description: "중고거래 판매 중인 상품 관리 도구",
 };
 
+interface LocaleLayoutProps {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}
+
 export default async function LocaleLayout({
   children,
   params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}) {
+}: LocaleLayoutProps) {
   const { locale } = await params;
 
   // locale 유효성 검증
