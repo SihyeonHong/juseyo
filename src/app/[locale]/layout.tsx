@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
 import { pretendard } from "@/app/fonts";
+import Header from "@/components/common/header";
 import { routing } from "@/i18n/routing";
 import ThemeProvider from "@/provider/theme-provider";
 
@@ -38,7 +39,10 @@ export default async function LocaleLayout({
       <body className="antialiased">
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
-            {children}
+            <div className="relative flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-1">{children}</main>
+            </div>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
