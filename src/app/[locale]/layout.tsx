@@ -4,8 +4,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
 import { pretendard } from "@/app/fonts";
-import ThemeProvider from "@/components/theme-provider";
 import { routing } from "@/i18n/routing";
+import ThemeProvider from "@/provider/theme-provider";
 
 import "@/app/globals.css";
 

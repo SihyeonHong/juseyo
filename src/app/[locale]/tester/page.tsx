@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 
-import DesignSystemTester from "@/components/design-system-tester";
-import ThemeToggle from "@/components/theme-toggle";
+import DesignSystemTester from "@/components/tester/design-system-tester";
+import ThemeToggle from "@/components/common/theme-toggle";
 
 export default async function Home() {
   const t = await getTranslations("HomePage");

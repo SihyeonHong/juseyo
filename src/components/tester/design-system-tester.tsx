@@ -15,9 +15,9 @@ import {
 } from "@/components/shadcn-ui/card";
 
 // 분리된 테스터 하위 컴포넌트 임포트
-import ColorPaletteTester from "./design-system/color-palette-tester";
-import TypographyTester from "./design-system/typography-tester";
-import UiComponentsTester from "./design-system/ui-components-tester";
+import ColorPaletteTester from "./color-palette-tester";
+import TypographyTester from "./typography-tester";
+import UiComponentsTester from "./ui-components-tester";
 
 // hydration 방지 및 클라이언트 마운트 감지용 subscription 함수
 const subscribe = () => () => {};

@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 
-import ThemeToggle from "@/components/theme-toggle";
+import ThemeToggle from "@/components/common/theme-toggle";
 import { Link } from "@/i18n/routing";
 
 export default async function Home() {

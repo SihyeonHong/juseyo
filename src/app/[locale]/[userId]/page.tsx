@@ -1,5 +1,5 @@
 
-import ThemeToggle from "@/components/theme-toggle";
+import ThemeToggle from "@/components/common/theme-toggle";
 
 export default async function Page() {
   return (
