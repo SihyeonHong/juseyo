@@ -13,7 +13,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 코드를 작성하기 전에, 관련된 프로젝트 문서를 먼저 확인하세요.
 
 - 제1 source (Product Strategy Document): `product/Product Strategy Document.md`
-- PRD (Product Requirement Document): `product/PRD_주세요_v0.1.md`
+- PRD (Product Requirement Document): `product/Product Requirement Document.md`
 - 코드 컨벤션, 커밋 컨벤션, 브랜치 전략: `docs/conventions.md`
 - 디자인 가이드 (사람용 요약): `docs/design-guide.md`
 - 디자인 시스템 (AI용 상세 스펙): `DESIGN.md`
