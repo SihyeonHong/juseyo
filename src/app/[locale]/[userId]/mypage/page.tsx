@@ -18,7 +18,7 @@ export default async function Page({ params }: PageProps) {
   const { userId } = await params;
 
   return (
-    <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 md:px-8">
+    <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 md:px-8">
       {/* 페이지 헤더 */}
       <div className="mb-6">
         <h1 className="text-[24px] font-bold leading-[1.3] tracking-[-0.5px]">
