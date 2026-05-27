@@ -1,5 +1,3 @@
-import React from "react";
-
 import SectionContainer from "@/components/mypage/section-container";
 import { Separator } from "@/components/shadcn-ui/separator";
 import EmptySection from "@/components/tester/empty-section";
@@ -20,15 +18,15 @@ export default async function Page({ params }: PageProps) {
         <SectionContainer title="마켓 프로필">
           <EmptySection title="마켓 프로필" />
         </SectionContainer>
-        
+
         <Separator className="bg-border/60" />
-        
+
         <SectionContainer title="상품 관리">
           <EmptySection title="상품 관리" />
         </SectionContainer>
-        
+
         <Separator className="bg-border/60" />
-        
+
         <SectionContainer title="회원정보 관리">
           <EmptySection title="회원정보 관리" />
         </SectionContainer>

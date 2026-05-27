@@ -1,4 +1,1 @@
-export const bannedUserIds = [
-    "test",
-    "tester",
-]
+export const bannedUserIds = ["admin", "dev", "developer", "test", "tester"];

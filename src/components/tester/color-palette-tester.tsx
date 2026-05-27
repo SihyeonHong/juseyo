@@ -1,17 +1,8 @@
 "use client";
 
-import { 
-  Info, 
-  Command, 
-  Sparkles, 
-  Activity 
-} from "lucide-react";
+import { Info, Command, Sparkles, Activity } from "lucide-react";
 
-import { 
-  Card, 
-  CardContent,
-  CardTitle 
-} from "@/components/shadcn-ui/card";
+import { Card, CardContent, CardTitle } from "@/components/shadcn-ui/card";
 
 // color palette item type definition
 export interface ColorItem {
@@ -34,7 +25,7 @@ const baseColors: ColorItem[] = [
     textClass: "text-foreground",
     description: "전체 화면의 base background 컬러",
     contrastText: "Foreground Text",
-    contrastClass: "text-foreground"
+    contrastClass: "text-foreground",
   },
   {
     name: "Foreground",
@@ -44,7 +35,7 @@ const baseColors: ColorItem[] = [
     textClass: "text-background",
     description: "기본 text 및 foreground 컬러",
     contrastText: "Background Text",
-    contrastClass: "text-background"
+    contrastClass: "text-background",
   },
   {
     name: "Card",
@@ -54,7 +45,7 @@ const baseColors: ColorItem[] = [
     textClass: "text-card-foreground",
     description: "콘텐츠 카드의 background 컬러",
     contrastText: "Card Foreground",
-    contrastClass: "text-card-foreground"
+    contrastClass: "text-card-foreground",
   },
   {
     name: "Card Foreground",
@@ -64,7 +55,7 @@ const baseColors: ColorItem[] = [
     textClass: "text-card",
     description: "카드 내부의 기본 text 컬러",
     contrastText: "Card Base Text",
-    contrastClass: "text-card"
+    contrastClass: "text-card",
   },
   {
     name: "Muted",
@@ -74,7 +65,7 @@ const baseColors: ColorItem[] = [
     textClass: "text-muted-foreground",
     description: "비활성 또는 비강조 영역 background 컬러",
     contrastText: "Muted Foreground",
-    contrastClass: "text-muted-foreground"
+    contrastClass: "text-muted-foreground",
   },
   {
     name: "Muted Foreground",
@@ -84,7 +75,7 @@ const baseColors: ColorItem[] = [
     textClass: "text-card",
     description: "비강조 힌트 text 컬러",
     contrastText: "Muted text demo",
-    contrastClass: "text-card"
+    contrastClass: "text-card",
   },
   {
     name: "Border",
@@ -94,7 +85,7 @@ const baseColors: ColorItem[] = [
     textClass: "text-foreground",
     description: "구분선 및 테두리 기본 컬러",
     contrastText: "Border line element",
-    contrastClass: "text-foreground"
+    contrastClass: "text-foreground",
   },
   {
     name: "Input",
@@ -104,7 +95,7 @@ const baseColors: ColorItem[] = [
     textClass: "text-foreground",
     description: "form input 컨트롤 테두리 컬러",
     contrastText: "Input box border style",
-    contrastClass: "text-foreground"
+    contrastClass: "text-foreground",
   },
   {
     name: "Ring",
@@ -114,8 +105,8 @@ const baseColors: ColorItem[] = [
     textClass: "text-background",
     description: "포커스 ring 표시용 컬러",
     contrastText: "Focus ring shadow color",
-    contrastClass: "text-background"
-  }
+    contrastClass: "text-background",
+  },
 ];
 
 const brandColors: ColorItem[] = [
@@ -127,7 +118,7 @@ const brandColors: ColorItem[] = [
     textClass: "text-primary-foreground",
     description: "메인 브랜드 퍼플 컬러",
     contrastText: "Primary Foreground Text",
-    contrastClass: "text-primary-foreground"
+    contrastClass: "text-primary-foreground",
   },
   {
     name: "Primary Foreground",
@@ -137,7 +128,7 @@ const brandColors: ColorItem[] = [
     textClass: "text-primary",
     description: "primary background 위의 text 컬러",
     contrastText: "Primary Tone Contrast",
-    contrastClass: "text-primary"
+    contrastClass: "text-primary",
   },
   {
     name: "Primary Light",
@@ -147,7 +138,7 @@ const brandColors: ColorItem[] = [
     textClass: "text-white",
     description: "보조 퍼플 및 활성화 강조 컬러",
     contrastText: "White text over light primary",
-    contrastClass: "text-white"
+    contrastClass: "text-white",
   },
   {
     name: "Secondary",
@@ -157,7 +148,7 @@ const brandColors: ColorItem[] = [
     textClass: "text-secondary-foreground",
     description: "연한 라벤더 보조 background 컬러",
     contrastText: "Secondary Foreground Text",
-    contrastClass: "text-secondary-foreground"
+    contrastClass: "text-secondary-foreground",
   },
   {
     name: "Secondary Foreground",
@@ -167,7 +158,7 @@ const brandColors: ColorItem[] = [
     textClass: "text-secondary",
     description: "secondary background 위의 text 컬러",
     contrastText: "Secondary Contrast Accent",
-    contrastClass: "text-secondary"
+    contrastClass: "text-secondary",
   },
   {
     name: "Accent",
@@ -177,7 +168,7 @@ const brandColors: ColorItem[] = [
     textClass: "text-accent-foreground",
     description: "소프트 핑크 포인트 컬러",
     contrastText: "Accent Foreground Text",
-    contrastClass: "text-accent-foreground"
+    contrastClass: "text-accent-foreground",
   },
   {
     name: "Accent Foreground",
@@ -187,7 +178,7 @@ const brandColors: ColorItem[] = [
     textClass: "text-accent",
     description: "accent background 위의 text 컬러",
     contrastText: "Accent Tone Contrast",
-    contrastClass: "text-accent"
+    contrastClass: "text-accent",
   },
   {
     name: "Accent Light",
@@ -197,8 +188,8 @@ const brandColors: ColorItem[] = [
     textClass: "text-accent",
     description: "매우 연한 핑크 톤 강조 영역 컬러",
     contrastText: "Accent text over pink background",
-    contrastClass: "text-accent"
-  }
+    contrastClass: "text-accent",
+  },
 ];
 
 const statusColors: ColorItem[] = [
@@ -210,7 +201,7 @@ const statusColors: ColorItem[] = [
     textClass: "text-white",
     description: "성공 메시지 및 완료 상태 컬러",
     contrastText: "Success Check Text",
-    contrastClass: "text-white"
+    contrastClass: "text-white",
   },
   {
     name: "Success BG",
@@ -220,7 +211,7 @@ const statusColors: ColorItem[] = [
     textClass: "text-success",
     description: "성공 알림 배너 background 컬러",
     contrastText: "Success status text check",
-    contrastClass: "text-success"
+    contrastClass: "text-success",
   },
   {
     name: "Warning",
@@ -230,7 +221,7 @@ const statusColors: ColorItem[] = [
     textClass: "text-white",
     description: "주의 및 경고 상태 메인 컬러",
     contrastText: "Warning Warning Text",
-    contrastClass: "text-white"
+    contrastClass: "text-white",
   },
   {
     name: "Warning BG",
@@ -240,7 +231,7 @@ const statusColors: ColorItem[] = [
     textClass: "text-warning",
     description: "경고 알림 배너 background 컬러",
     contrastText: "Warning alert text check",
-    contrastClass: "text-warning"
+    contrastClass: "text-warning",
   },
   {
     name: "Destructive",
@@ -250,7 +241,7 @@ const statusColors: ColorItem[] = [
     textClass: "text-destructive-foreground",
     description: "오류 및 삭제 등 유해한 작업 상태 컬러",
     contrastText: "Destructive Foreground Text",
-    contrastClass: "text-destructive-foreground"
+    contrastClass: "text-destructive-foreground",
   },
   {
     name: "Destructive Foreground",
@@ -260,42 +251,46 @@ const statusColors: ColorItem[] = [
     textClass: "text-destructive",
     description: "destructive background 위의 text 컬러",
     contrastText: "Destructive text match",
-    contrastClass: "text-destructive"
-  }
+    contrastClass: "text-destructive",
+  },
 ];
 
 // static color swatch card component
 function ColorSwatchStatic({ item }: { item: ColorItem }) {
   return (
-    <Card 
-      size="sm" 
-      className="overflow-hidden flex flex-col h-full hover:shadow-xs transition-all duration-300"
+    <Card
+      size="sm"
+      className="flex h-full flex-col overflow-hidden transition-all duration-300 hover:shadow-xs"
     >
       {/* 상단 swatch preview */}
-      <div className={`h-20 ${item.bgClass} flex justify-center items-center p-3 text-center`}>
+      <div
+        className={`h-20 ${item.bgClass} flex items-center justify-center p-3 text-center`}
+      >
         {item.contrastText && (
-          <span className={`text-[11px] font-semibold px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 backdrop-blur-xs ${item.contrastClass}`}>
+          <span
+            className={`rounded bg-black/5 px-2 py-0.5 text-[11px] font-semibold backdrop-blur-xs dark:bg-white/5 ${item.contrastClass}`}
+          >
             {item.contrastText}
           </span>
         )}
       </div>
 
       {/* 하단 spec description */}
-      <CardContent className="p-3.5 flex flex-col flex-1">
-        <CardTitle className="mb-1 text-foreground">{item.name}</CardTitle>
-        
-        <p className="text-[10px] text-muted-foreground leading-relaxed mb-3 flex-1">
+      <CardContent className="flex flex-1 flex-col p-3.5">
+        <CardTitle className="text-foreground mb-1">{item.name}</CardTitle>
+
+        <p className="text-muted-foreground mb-3 flex-1 text-[10px] leading-relaxed">
           {item.description}
         </p>
 
-        <div className="space-y-1 pt-2 border-t border-border/60">
-          <div className="flex items-center justify-between text-[9px] font-mono py-0.5 px-1 rounded bg-muted/40 text-foreground/70">
-            <span className="text-[8px] text-muted-foreground">VAR</span>
-            <span className="truncate ml-1">{item.variable}</span>
+        <div className="border-border/60 space-y-1 border-t pt-2">
+          <div className="bg-muted/40 text-foreground/70 flex items-center justify-between rounded px-1 py-0.5 font-mono text-[9px]">
+            <span className="text-muted-foreground text-[8px]">VAR</span>
+            <span className="ml-1 truncate">{item.variable}</span>
           </div>
-          <div className="flex items-center justify-between text-[9px] font-mono py-0.5 px-1 rounded bg-muted/40 text-foreground/70">
-            <span className="text-[8px] text-muted-foreground">TW</span>
-            <span className="truncate ml-1">{item.tailwindClass}</span>
+          <div className="bg-muted/40 text-foreground/70 flex items-center justify-between rounded px-1 py-0.5 font-mono text-[9px]">
+            <span className="text-muted-foreground text-[8px]">TW</span>
+            <span className="ml-1 truncate">{item.tailwindClass}</span>
           </div>
         </div>
       </CardContent>
@@ -309,20 +304,24 @@ export default function ColorPaletteTester() {
       {/* color test guide */}
       <Card>
         <CardContent className="flex gap-3 p-4">
-          <Info className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+          <Info className="text-primary mt-0.5 h-4 w-4 shrink-0" />
           <div>
-            우측 상단의 다크/라이트 모드 버튼을 조작하여 각 토큰 변수들의 동적 대응 상태를 확인할 수 있습니다. 모든 컬러는 HEX 코드 하드코딩 없이 CSS 변수를 기반으로 맵핑되어 있습니다.
+            우측 상단의 다크/라이트 모드 버튼을 조작하여 각 토큰 변수들의 동적
+            대응 상태를 확인할 수 있습니다. 모든 컬러는 HEX 코드 하드코딩 없이
+            CSS 변수를 기반으로 맵핑되어 있습니다.
           </div>
         </CardContent>
       </Card>
 
       {/* base theme colors */}
       <div>
-        <div className="flex items-center gap-2 mb-3.5 pb-1 border-b border-border/60">
-          <Command className="w-4 h-4 text-muted-foreground" />
-          <h3 className="text-sm font-bold text-foreground">기본 테마 컬러 (Base Theme Colors)</h3>
+        <div className="border-border/60 mb-3.5 flex items-center gap-2 border-b pb-1">
+          <Command className="text-muted-foreground h-4 w-4" />
+          <h3 className="text-foreground text-sm font-bold">
+            기본 테마 컬러 (Base Theme Colors)
+          </h3>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {baseColors.map((color) => (
             <ColorSwatchStatic key={color.name} item={color} />
           ))}
@@ -331,11 +330,13 @@ export default function ColorPaletteTester() {
 
       {/* brand colors */}
       <div>
-        <div className="flex items-center gap-2 mb-3.5 pb-1 border-b border-border/60">
-          <Sparkles className="w-4 h-4 text-muted-foreground" />
-          <h3 className="text-sm font-bold text-foreground">브랜드 정체성 컬러 (Brand Colors)</h3>
+        <div className="border-border/60 mb-3.5 flex items-center gap-2 border-b pb-1">
+          <Sparkles className="text-muted-foreground h-4 w-4" />
+          <h3 className="text-foreground text-sm font-bold">
+            브랜드 정체성 컬러 (Brand Colors)
+          </h3>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {brandColors.map((color) => (
             <ColorSwatchStatic key={color.name} item={color} />
           ))}
@@ -344,11 +345,13 @@ export default function ColorPaletteTester() {
 
       {/* status feedback colors */}
       <div>
-        <div className="flex items-center gap-2 mb-3.5 pb-1 border-b border-border/60">
-          <Activity className="w-4 h-4 text-muted-foreground" />
-          <h3 className="text-sm font-bold text-foreground">피드백 상태 컬러 (Status Colors)</h3>
+        <div className="border-border/60 mb-3.5 flex items-center gap-2 border-b pb-1">
+          <Activity className="text-muted-foreground h-4 w-4" />
+          <h3 className="text-foreground text-sm font-bold">
+            피드백 상태 컬러 (Status Colors)
+          </h3>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {statusColors.map((color) => (
             <ColorSwatchStatic key={color.name} item={color} />
           ))}

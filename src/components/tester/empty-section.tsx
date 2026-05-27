@@ -8,8 +8,8 @@ interface EmptySectionProps {
 
 export default function EmptySection({ title }: EmptySectionProps) {
   return (
-    <Card className="flex min-h-32 items-center justify-center border border-dashed border-border/80 bg-linear-to-b from-card to-secondary/30 shadow-xs ring-0 dark:border-border dark:bg-muted/10">
-      <span className="text-xs text-muted-foreground/80">
+    <Card className="border-border/80 from-card to-secondary/30 dark:border-border dark:bg-muted/10 flex min-h-32 items-center justify-center border border-dashed bg-linear-to-b shadow-xs ring-0">
+      <span className="text-muted-foreground/80 text-xs">
         {title} 콘텐츠 영역
       </span>
     </Card>

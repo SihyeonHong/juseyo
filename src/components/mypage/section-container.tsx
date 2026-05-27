@@ -11,7 +11,7 @@ export default function SectionContainer({
 }: SectionContainerProps) {
   return (
     <section className="w-full">
-      <h2 className="text-lg font-bold tracking-tight text-foreground mb-4">
+      <h2 className="text-foreground mb-4 text-lg font-bold tracking-tight">
         {title}
       </h2>
       {children}
