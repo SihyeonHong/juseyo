@@ -1,3 +1,4 @@
+import MarketProfileCard from "@/components/mypage/market-profile-card";
 import SectionContainer from "@/components/mypage/section-container";
 import { Separator } from "@/components/shadcn-ui/separator";
 import EmptySection from "@/components/tester/empty-section";
@@ -16,7 +17,7 @@ export default async function Page({ params }: PageProps) {
       {/* 수직으로 구성된 3개 섹션 및 구분선 */}
       <div className="flex flex-col gap-2">
         <SectionContainer title="마켓 프로필">
-          <EmptySection title="마켓 프로필" />
+          <MarketProfileCard userId={userId} />
         </SectionContainer>
 
         <Separator className="bg-border/60" />

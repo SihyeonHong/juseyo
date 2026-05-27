@@ -25,6 +25,11 @@ This version has breaking changes — APIs, conventions, and file structure may 
 2. 기술적인 외래어(예: locale, wrapper 등)는 한국어 발음으로 표기하지 말고 영어 원단어 그대로 표기합니다.
 3. 완전한 문장(예: '~합니다.')으로 작성할 필요 없이, 핵심만 간결하게 작성합니다. 불필요하거나 자명한 설명은 생략합니다.
 
+## 코드 구조 규칙 (Code Structure Rules)
+
+1. Always place the primary/main component at the top of the file. Move all supporting constants, variables (such as 'defaultMarketProfile'), and static helper configurations to the bottom of the file.
+2. Follow a top-down (Newspaper Style) code layout: export the main component first at the top, and declare supporting configs and constants at the very end of the file.
+
 ## TypeScript 타입 체크
 
 중요한 비즈니스 로직 수정, 새 라이브러리 도입, 공용 인터페이스(`@/types`) 수정 후에는 타입 체크를 수행하세요.

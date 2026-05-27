@@ -8,6 +8,7 @@ import Footer from "@/components/common/footer";
 import Header from "@/components/common/header";
 import { routing } from "@/i18n/routing";
 import ThemeProvider from "@/provider/theme-provider";
+import { Toaster } from "@/components/shadcn-ui/sonner";
 
 import "@/app/globals.css";
 
@@ -49,6 +50,7 @@ export default async function LocaleLayout({
               <main className="flex-1">{children}</main>
               <Footer />
             </div>
+            <Toaster />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
